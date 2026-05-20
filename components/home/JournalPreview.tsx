@@ -38,8 +38,11 @@ export default function JournalPreview() {
               <Link href={`/journal/${post.slug}`}>
                 <div className="group cursor-pointer">
                   {/* Featured Image */}
-                  <div className="relative mb-6 bg-cream rounded-[12px] aspect-video overflow-hidden h-48">
-                    <div className="absolute inset-0 bg-gradient-to-br from-rose-nude/30 to-burnt-mocha/30" />
+                  <div
+                    className="relative mb-6 bg-cream rounded-[12px] aspect-video overflow-hidden h-48 bg-center bg-cover"
+                    style={{ backgroundImage: `url(${post.image})` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-rose-nude/20 to-burnt-mocha/30" />
                     <motion.div
                       className="absolute inset-0 bg-charcoal/10"
                       initial={{ opacity: 0 }}

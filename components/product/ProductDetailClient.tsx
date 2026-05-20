@@ -31,7 +31,7 @@ export default function ProductDetailClient({ product, related }: Props) {
 
   const heroTone = selectedVariant?.colorHex ?? product.variants[0]?.colorHex ?? '#E8DDD3'
   const stockLeft = selectedVariant?.stock ?? 0
-  const heroImage = selectedVariant?.imageUrl ?? product.images[0]?.url ?? '/images/sample-1.jpg'
+  const heroImage = selectedVariant?.imageUrl ?? product.images[0]?.url ?? '/images/sample-1-medium.jpg'
 
   const handleAddToCart = () => {
     if (!selectedVariant) return

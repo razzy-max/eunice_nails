@@ -39,19 +39,15 @@ export default function FeaturedCollections() {
                 <Link href={`/collections/${collection.slug}`}>
                   <div
                     className={clsx(
-                      'relative h-64 md:h-96 rounded-[12px] overflow-hidden group cursor-pointer',
+                      'relative h-64 md:h-96 rounded-[12px] overflow-hidden group cursor-pointer bg-center bg-cover',
                       colSpan,
                       rowSpan
                     )}
                     style={{
-                      background: `linear-gradient(135deg, ${collection.color}20, ${collection.color}40)`
+                      backgroundImage: `linear-gradient(135deg, ${collection.color}20, ${collection.color}40), url(${collection.image})`
                     }}
                   >
-                    {/* Background Color Based on Collection */}
-                    <div
-                      className="absolute inset-0"
-                      style={{ backgroundColor: `${collection.color}15` }}
-                    />
+                    <div className="absolute inset-0 bg-charcoal/10" />
 
                     {/* Content */}
                     <div className="absolute inset-0 flex flex-col items-end justify-end p-6 bg-gradient-to-t from-charcoal/60 to-transparent">

@@ -12,11 +12,15 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full h-screen bg-charcoal flex flex-col items-center justify-center overflow-hidden">
-      {/* Hero Background with Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 to-charcoal/60 z-10" />
+      {/* Hero Background Image */}
+      <div
+        className="absolute inset-0 z-0 bg-center bg-cover"
+        style={{ backgroundImage: "url('/images/hero-banner.jpg')" }}
+      />
 
-      {/* Placeholder Hero Image */}
-      <div className="absolute inset-0 bg-gradient-to-r from-rose-nude/20 to-burnt-mocha/20 z-0" />
+      {/* Hero Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/55 to-charcoal/70 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-rose-nude/10 via-transparent to-burnt-mocha/10 z-10" />
 
       {/* Content */}
       <motion.div

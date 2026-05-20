@@ -66,80 +66,87 @@ export default function BestSellersRow() {
           className="overflow-x-auto scrollbar-hide flex gap-6 pb-4"
           style={{ scrollBehavior: 'smooth' }}
         >
-          {bestSellerProducts.slice(0, 8).map((product, i) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              viewport={{ once: true }}
-              className="flex-shrink-0 w-48 md:w-56"
-            >
-              <Link href={`/shop/${product.slug}`}>
-                <div className="group cursor-pointer">
-                  {/* Image */}
-                  <div className="relative mb-4 bg-ivory rounded-[10px] aspect-[4/5] overflow-hidden">
-                    <div className="absolute inset-0 bg-cream/50 animate-pulse" />
+          {bestSellerProducts.slice(0, 8).map((product, i) => {
+            const image = product.images?.[0]?.url ?? '/images/sample-1-medium.jpg'
 
-                    {/* Product Tags */}
-                    <div className="absolute top-3 left-3 z-10 flex gap-2 flex-wrap">
-                      {product.tags.map(tag => (
-                        <Badge key={tag} variant={tag === 'new' ? 'new' : 'bestseller'}>
-                          {tag.charAt(0).toUpperCase() + tag.slice(1)}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* Wishlist Button */}
-                    <button
-                      aria-label="Add to wishlist"
-                      className="absolute top-3 right-3 z-10 p-2 bg-white rounded-full hover:bg-ivory shadow-sm hover:shadow-md transition-all"
+            return (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-48 md:w-56"
+              >
+                <Link href={`/shop/${product.slug}`}>
+                  <div className="group cursor-pointer">
+                    {/* Image */}
+                    <div
+                      className="relative mb-4 bg-ivory rounded-[10px] aspect-[4/5] overflow-hidden bg-center bg-cover"
+                      style={{ backgroundImage: `url(${image})` }}
                     >
-                      <Heart size={18} className="text-charcoal" />
-                    </button>
+                      <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-transparent" />
 
-                    {/* Hover Overlay */}
-                    <motion.div
-                      className="absolute inset-0 bg-charcoal/10 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity p-3"
-                      whileHover={{ opacity: 1 }}
-                    >
-                      <Button variant="primary" size="sm" onClick={e => e.preventDefault()}>
-                        Quick View
-                      </Button>
-                    </motion.div>
-                  </div>
+                      {/* Product Tags */}
+                      <div className="absolute top-3 left-3 z-10 flex gap-2 flex-wrap">
+                        {product.tags.map(tag => (
+                          <Badge key={tag} variant={tag === 'new' ? 'new' : 'bestseller'}>
+                            {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                          </Badge>
+                        ))}
+                      </div>
 
-                  {/* Product Info */}
-                  <div className="space-y-2">
-                    <h3 className="text-sm font-semibold text-charcoal line-clamp-2 group-hover:text-rose-nude transition-colors">
-                      {product.name}
-                    </h3>
+                      {/* Wishlist Button */}
+                      <button
+                        aria-label="Add to wishlist"
+                        className="absolute top-3 right-3 z-10 p-2 bg-white rounded-full hover:bg-ivory shadow-sm hover:shadow-md transition-all"
+                      >
+                        <Heart size={18} className="text-charcoal" />
+                      </button>
 
-                    {/* Color Swatches */}
-                    <div className="flex gap-2">
-                      {product.variants.slice(0, 3).map(variant => (
-                        <div
-                          key={variant.id}
-                          className="w-5 h-5 rounded-full border-2 border-charcoal/20 hover:border-charcoal transition-colors cursor-pointer"
-                          style={{ backgroundColor: variant.colorHex }}
-                          title={variant.color}
-                        />
-                      ))}
-                      {product.variants.length > 3 && (
-                        <div className="text-xs text-charcoal/60">+{product.variants.length - 3}</div>
-                      )}
+                      {/* Hover Overlay */}
+                      <motion.div
+                        className="absolute inset-0 bg-charcoal/10 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity p-3"
+                        whileHover={{ opacity: 1 }}
+                      >
+                        <Button variant="primary" size="sm" onClick={e => e.preventDefault()}>
+                          Quick View
+                        </Button>
+                      </motion.div>
                     </div>
 
-                    {/* Price and Rating */}
-                    <div className="space-y-1">
-                      <PriceDisplay price={product.basePrice} />
-                      <RatingStars rating={product.rating} reviewCount={product.reviewCount} size="sm" />
+                    {/* Product Info */}
+                    <div className="space-y-2">
+                      <h3 className="text-sm font-semibold text-charcoal line-clamp-2 group-hover:text-rose-nude transition-colors">
+                        {product.name}
+                      </h3>
+
+                      {/* Color Swatches */}
+                      <div className="flex gap-2">
+                        {product.variants.slice(0, 3).map(variant => (
+                          <div
+                            key={variant.id}
+                            className="w-5 h-5 rounded-full border-2 border-charcoal/20 hover:border-charcoal transition-colors cursor-pointer"
+                            style={{ backgroundColor: variant.colorHex }}
+                            title={variant.color}
+                          />
+                        ))}
+                        {product.variants.length > 3 && (
+                          <div className="text-xs text-charcoal/60">+{product.variants.length - 3}</div>
+                        )}
+                      </div>
+
+                      {/* Price and Rating */}
+                      <div className="space-y-1">
+                        <PriceDisplay price={product.basePrice} />
+                        <RatingStars rating={product.rating} reviewCount={product.reviewCount} size="sm" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            )
+          })}
         </div>
 
         {/* View All CTA */}
