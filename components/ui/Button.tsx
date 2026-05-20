@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import clsx from 'clsx'
 
-type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'destructive'
+type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,6 +16,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary: 'bg-charcoal text-ivory hover:bg-charcoal/90',
   secondary: 'border border-charcoal text-charcoal bg-transparent hover:bg-charcoal/5',
   tertiary: 'bg-transparent text-charcoal underline hover:no-underline',
+  ghost: 'bg-transparent text-charcoal hover:bg-charcoal/5',
   destructive: 'bg-rust text-ivory hover:bg-rust/90'
 }
 

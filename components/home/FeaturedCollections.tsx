@@ -44,7 +44,7 @@ export default function FeaturedCollections() {
                       rowSpan
                     )}
                     style={{
-                      backgroundGradient: `linear-gradient(135deg, ${collection.color}20, ${collection.color}40)`
+                      background: `linear-gradient(135deg, ${collection.color}20, ${collection.color}40)`
                     }}
                   >
                     {/* Background Color Based on Collection */}

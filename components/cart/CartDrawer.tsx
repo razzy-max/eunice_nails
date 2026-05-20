@@ -34,15 +34,13 @@ export default function CartDrawer() {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[60]">
-          <motion.button
-            type="button"
-            aria-label="Close cart"
+          <motion.div
+            {...({ 'aria-label': 'Close cart', role: 'button', onClick: closeCart } as any)}
             className="absolute inset-0 bg-black/30"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.2 }}
-            onClick={closeCart}
           />
 
           <motion.aside
@@ -50,7 +48,7 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.28, ease: 'easeInOut' }}
-            className="absolute right-0 top-0 h-full w-full max-w-md bg-ivory shadow-2xl border-l border-cream flex flex-col"
+            {...({ className: 'absolute right-0 top-0 h-full w-full max-w-md bg-ivory shadow-2xl border-l border-cream flex flex-col' } as any)}
           >
             <div className="flex items-center justify-between border-b border-cream px-6 py-5">
               <div>
