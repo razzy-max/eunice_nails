@@ -72,12 +72,14 @@ export default function CartDrawer() {
                 />
               ) : (
                 <div className="space-y-4">
-                  {items.map(item => (
+                  {items.map(item => {
+                    const image = item.product.images?.[0]?.url ?? '/images/sample-1-medium.jpg'
+                    return (
                     <div key={item.id} className="rounded-[20px] border border-cream bg-white p-4">
                       <div className="flex gap-4">
                         <div
-                          className="h-24 w-24 shrink-0 rounded-[16px] border border-cream"
-                          style={{ background: `linear-gradient(135deg, ${item.variant.colorHex} 0%, #FAF4EE 100%)` }}
+                          className="h-24 w-24 shrink-0 rounded-[16px] border border-cream bg-cover bg-center"
+                          style={{ backgroundImage: `url(${image})` }}
                         />
 
                         <div className="min-w-0 flex-1 space-y-2">
@@ -121,7 +123,8 @@ export default function CartDrawer() {
                         </div>
                       </div>
                     </div>
-                  ))}
+                    )
+                  })}
                 </div>
               )}
             </div>

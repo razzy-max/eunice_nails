@@ -47,12 +47,14 @@ export default function CartPage() {
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_360px] items-start">
         <section className="space-y-4">
-          {items.map(item => (
+          {items.map(item => {
+            const image = item.product.images?.[0]?.url ?? '/images/sample-1-medium.jpg'
+            return (
             <div key={item.id} className="rounded-[24px] border border-cream bg-ivory p-5">
               <div className="flex flex-col gap-4 sm:flex-row">
                 <div
-                  className="h-28 w-full rounded-[18px] border border-cream sm:w-32"
-                  style={{ background: `linear-gradient(135deg, ${item.variant.colorHex} 0%, #FAF4EE 100%)` }}
+                  className="h-28 w-full rounded-[18px] border border-cream bg-cover bg-center sm:w-32"
+                  style={{ backgroundImage: `url(${image})` }}
                 />
 
                 <div className="flex-1 space-y-3">
@@ -82,7 +84,8 @@ export default function CartPage() {
                 </div>
               </div>
             </div>
-          ))}
+            )
+          })}
         </section>
 
         <aside className="rounded-[28px] border border-cream bg-ivory p-6 space-y-5 lg:sticky lg:top-28">

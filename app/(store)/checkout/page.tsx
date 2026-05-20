@@ -228,11 +228,13 @@ export default function CheckoutPage() {
           </div>
 
           <div className="space-y-4 max-h-[28rem] overflow-y-auto pr-1">
-            {items.map(item => (
+            {items.map(item => {
+              const image = item.product.images?.[0]?.url ?? '/images/sample-1-medium.jpg'
+              return (
               <div key={item.id} className="flex items-center gap-3 rounded-[18px] border border-cream p-3">
                 <div
-                  className="h-16 w-16 shrink-0 rounded-[14px] border border-cream"
-                  style={{ background: `linear-gradient(135deg, ${item.variant.colorHex} 0%, #FAF4EE 100%)` }}
+                  className="h-16 w-16 shrink-0 rounded-[14px] border border-cream bg-cover bg-center"
+                  style={{ backgroundImage: `url(${image})` }}
                 />
                 <div className="min-w-0 flex-1">
                   <div className="text-sm font-medium leading-tight">{item.product.name}</div>
@@ -243,7 +245,8 @@ export default function CheckoutPage() {
                   <div className="text-sm text-charcoal/60">${(item.variant.price * item.quantity).toFixed(2)}</div>
                 </div>
               </div>
-            ))}
+              )
+            })}
           </div>
 
           <div className="space-y-3 text-sm text-charcoal/70 border-t border-cream pt-4">

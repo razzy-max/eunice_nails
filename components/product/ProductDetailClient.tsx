@@ -262,16 +262,19 @@ export default function ProductDetailClient({ product, related }: Props) {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {related.map(item => (
+          {related.map(item => {
+            const image = item.images?.[0]?.url ?? '/images/sample-1-medium.jpg'
+            return (
             <Link key={item.id} href={`/shop/${item.slug}`} className="block rounded-[20px] border border-cream bg-ivory p-4 hover:shadow-sm transition-shadow">
               <div
-                className="aspect-square rounded-[16px] mb-4 border border-cream"
-                style={{ background: `linear-gradient(135deg, ${item.variants[0]?.colorHex ?? '#E8DDD3'} 0%, #FAF4EE 100%)` }}
+                className="aspect-square rounded-[16px] mb-4 border border-cream bg-cover bg-center"
+                style={{ backgroundImage: `url(${image})` }}
               />
               <div className="text-sm font-medium">{item.name}</div>
               <div className="text-sm text-charcoal/60">${item.basePrice.toFixed(2)}</div>
             </Link>
-          ))}
+            )
+          })}
         </div>
       </section>
     </div>
