@@ -5,7 +5,6 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Search, ShoppingBag, Heart, User, Menu, X } from 'lucide-react'
 import { useCartStore } from '@/lib/stores/cartStore'
 import clsx from 'clsx'
-import ChatButton from '@/components/ai-chat/ChatButton'
 
 const ANNOUNCEMENT = 'Free shipping on orders over $50'
 
@@ -217,8 +216,6 @@ export default function Header() {
           </>
         )}
       </AnimatePresence>
-      {/* Chat button (lazy-loaded) */}
-      <ChatButton />
     </>
   )
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import Header from '../components/layout/Header'
 import Footer from '../components/layout/Footer'
 import CartDrawer from '../components/cart/CartDrawer'
+import ChatWidget from '../components/ai-chat/ChatWidget'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }){
         <a className="sr-only focus:not-sr-only" href="#main-content">Skip to content</a>
         <Header />
         <CartDrawer />
+        <ChatWidget />
         <main id="main-content" className="min-h-[60vh]">
           {children}
         </main>
