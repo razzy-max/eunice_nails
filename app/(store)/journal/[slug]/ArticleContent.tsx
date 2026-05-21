@@ -131,9 +131,11 @@ export default function ArticleContent({ post, relatedPosts }: ArticleContentPro
           <p className="text-lg text-charcoal/70 mb-8">
             Shop our latest collections to find the perfect set inspired by this article.
           </p>
-          <Button href="/shop" variant="primary">
-            Explore Collections
-          </Button>
+          <Link href="/shop">
+            <Button variant="primary">
+              Explore Collections
+            </Button>
+          </Link>
         </div>
       </section>
     </>

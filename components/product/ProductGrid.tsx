@@ -3,10 +3,18 @@
 import React from 'react'
 import type { Product } from '@/lib/types'
 import ProductCard from './ProductCard'
+import { ProductGridSkeleton } from '@/components/ui/LoadingSkeletons'
+import { EmptyState } from '@/components/ui/EmptyState'
 
-export default function ProductGrid({ products }: { products: Product[] }) {
+export default function ProductGrid({ products, loading }: { products?: Product[]; loading?: boolean }) {
+  if (loading) return <ProductGridSkeleton />
+
   if (!products || products.length === 0) {
-    return <div className="text-center py-12 text-charcoal/60">No products found.</div>
+    return (
+      <div className="py-12">
+        <EmptyState title="No products found" description="Try adjusting filters or explore our featured collections." ctaLabel="Browse collections" onCtaClick={() => window.location.assign('/collections')} />
+      </div>
+    )
   }
 
   return (

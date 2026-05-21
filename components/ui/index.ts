@@ -12,7 +12,8 @@ export {
   ProductGridSkeleton,
   OrderListSkeleton,
   TextSkeleton,
-  ImageSkeleton
+  ImageSkeleton,
+  CollectionCardSkeleton
 } from './LoadingSkeletons'
 
 export { EmptyState, ErrorState } from './EmptyState'

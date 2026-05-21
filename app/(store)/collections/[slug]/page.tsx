@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { mockCollections } from '@/lib/mock-data/collections'
 import { mockProducts } from '@/lib/mock-data/products'
-import ProductCard from '@/components/product/ProductCard'
+import CollectionDetailClient from '@/components/collections/CollectionDetailClient'
 
 interface Props {
   params: { slug: string }
@@ -32,20 +32,7 @@ export default function CollectionDetail({ params }: Props) {
         </div>
       </section>
 
-      <section className="py-12 bg-ivory">
-        <div className="container">
-          <h2 className="text-2xl font-serif font-bold mb-6">Products in {collection.name}</h2>
-          {products.length === 0 ? (
-            <div className="py-12 text-center text-charcoal/70">No products found for this collection.</div>
-          ) : (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {products.map(p => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+      <CollectionDetailClient collection={collection} products={products} />
     </main>
   )
 }

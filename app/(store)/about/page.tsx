@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Heart, Leaf, Users } from 'lucide-react'
 import Button from '@/components/ui/Button'
@@ -157,9 +158,11 @@ export default function AboutPage() {
           <p className="text-lg text-ivory/90 mb-8">
             Browse our collections and find the perfect set that matches your energy.
           </p>
-          <Button href="/shop" variant="secondary">
-            Shop Now
-          </Button>
+          <Link href="/shop">
+            <Button variant="secondary">
+              Shop Now
+            </Button>
+          </Link>
         </div>
       </section>
     </main>

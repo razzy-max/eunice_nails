@@ -68,3 +68,15 @@ export function ImageSkeleton({ aspectRatio = 'aspect-[4/5]' }: { aspectRatio?: 
     />
   )
 }
+
+export function CollectionCardSkeleton() {
+  return (
+    <div className="animate-pulse">
+      <motion.div className="rounded-[12px] h-56 bg-cream w-full" {...shimmer} />
+      <div className="mt-3">
+        <motion.div className="h-5 bg-cream rounded w-1/2 mb-2" {...shimmer} />
+        <motion.div className="h-3 bg-cream rounded w-3/4" {...shimmer} />
+      </div>
+    </div>
+  )
+}
