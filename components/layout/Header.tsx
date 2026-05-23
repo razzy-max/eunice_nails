@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Search, ShoppingBag, Heart, User, Menu, X } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useCartStore } from '@/lib/stores/cartStore'
 import clsx from 'clsx'
 
@@ -16,6 +17,8 @@ export default function Header() {
   const cartItems = useCartStore(state => state.items)
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0)
   const shouldReduceMotion = useReducedMotion()
+  const router = useRouter()
+  const [searchValue, setSearchValue] = useState('')
 
   React.useEffect(() => {
     let raf = 0
@@ -168,13 +171,25 @@ export default function Header() {
           onClick={() => setIsSearchOpen(false)}
         >
           <div className="container py-6" onClick={e => e.stopPropagation()}>
-            <div className="relative">
+              <div className="relative">
               <input
                 type="text"
                 placeholder="Search products, collections, articles..."
                 autoFocus
+                value={searchValue}
+                onChange={e => setSearchValue(e.target.value)}
                 className="w-full px-4 py-3 rounded-[10px] border border-cream bg-ivory"
-                onKeyDown={e => e.key === 'Escape' && setIsSearchOpen(false)}
+                onKeyDown={e => {
+                  if (e.key === 'Escape') return setIsSearchOpen(false)
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    const q = searchValue.trim()
+                    if (q.length > 0) {
+                      setIsSearchOpen(false)
+                      router.push(`/shop?q=${encodeURIComponent(q)}`)
+                    }
+                  }
+                }}
               />
               <div className="absolute top-full left-0 right-0 mt-2 bg-ivory border border-cream rounded-[10px] max-h-96 overflow-y-auto">
                 <div className="p-4 text-sm text-charcoal/60">Start typing to search...</div>

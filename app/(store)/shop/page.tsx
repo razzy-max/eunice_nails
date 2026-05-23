@@ -40,12 +40,23 @@ export default function ShopPage() {
   const products: Product[] = mockProducts
   const shape = searchParams.get('shape') ?? undefined
   const length = searchParams.get('length') ?? undefined
+  const q = searchParams.get('q') ?? undefined
   const sort = (searchParams.get('sort') as SortOption | null) ?? 'featured'
 
   const filtered = useMemo(() => {
     const matched = products.filter(product => product.variants.some(variant => variantMatches(variant, shape, length)))
+    const qLower = q?.toLowerCase().trim()
 
-    return [...matched].sort((left, right) => {
+    const matchedByQuery = qLower
+      ? matched.filter(product => {
+          const inName = product.name?.toLowerCase().includes(qLower)
+          const inDesc = product.description?.toLowerCase().includes(qLower)
+          const inTags = (product.tags || []).join(' ').toLowerCase().includes(qLower)
+          return inName || inDesc || inTags
+        })
+      : matched
+
+    return [...matchedByQuery].sort((left, right) => {
       if (sort === 'price-asc') return (left.basePrice ?? 0) - (right.basePrice ?? 0)
       if (sort === 'price-desc') return (right.basePrice ?? 0) - (left.basePrice ?? 0)
       if (sort === 'rating') return (right.rating ?? 0) - (left.rating ?? 0)
